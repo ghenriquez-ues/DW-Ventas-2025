@@ -2,13 +2,13 @@
 <BuildLog xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ProjectInfo>
     <Name>DW-Ventas</Name>
-    <LastWriteTime>2025-08-09T21:27:22.4221142Z</LastWriteTime>
+    <LastWriteTime>2025-08-09T23:06:47.1172875Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>Prueba Leer csv.dtsx</Name>
-      <LastWriteTime>2025-08-09T21:27:22.3781081Z</LastWriteTime>
+      <LastWriteTime>2025-08-09T23:06:47.0812843Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

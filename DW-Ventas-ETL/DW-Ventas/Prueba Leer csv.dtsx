@@ -11,8 +11,8 @@
   DTS:LocaleID="3082"
   DTS:ObjectName="Prueba Leer csv"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{A42133EB-32BA-4B1D-AE1B-F953C0D18961}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{C05E2B1E-173A-4C9C-BC75-78072B021F8B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -24,6 +24,16 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=testCar;Integrated Security=True;Application Name=SSIS-Prueba Leer csv-{C56ADDC6-8C8A-4E5B-B6EC-105E15DCCF33}(localdb)\MSSQLLocalDB.testCar;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.testCar 1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{A02822C5-08C1-4C9D-8249-00B211D5556D}"
+      DTS:ObjectName="(localdb)\MSSQLLocalDB.testCar 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DW_Ventas_2025;Integrated Security=True;Application Name=&quot;SSIS-Prueba Leer csv-{A02822C5-08C1-4C9D-8249-00B211D5556D}(localdb)\MSSQLLocalDB.testCar 1&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -163,6 +173,80 @@
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Leer dimdates.csv]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{4A58673A-26B3-4617-85BA-3D8F54899CAD}"
+      DTS:ObjectName="Leer dimdates.csv">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="3082"
+          DTS:HeaderRowDelimiter="_x002C_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\User\Documents\GitHub\DW-Ventas-2025\dimdates.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Id"
+              DTS:DTSID="{05C8D8F2-4314-4574-A05C-A00807375242}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Date"
+              DTS:DTSID="{6CCE5443-9EF9-4E61-9BBA-9EF60EBC8B22}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MonthLongName"
+              DTS:DTSID="{9461EDB3-653D-43D1-85BD-40422B93174F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CalendarDay"
+              DTS:DTSID="{7D06448C-7AB2-46B0-A180-84A12DB8C4C0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CalendarMonth"
+              DTS:DTSID="{4F37B288-AE35-4E48-BD69-0AB125978C05}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CalendarYear"
+              DTS:DTSID="{653AAFA8-85AF-4329-AB16-9A7590B36096}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
@@ -178,7 +262,403 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <pipeline
-          version="1" />
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargar DimTiempo\Cargar dimdates csv"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Cargar dimdates csv"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DimTiempo"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar DimTiempo\Cargar dimdates csv.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.testCar]"
+                  connectionManagerRefId="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.testCar]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].Columns[Id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Id"
+                      externalMetadataColumnId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].ExternalColumns[Fechakey]"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[Id]" />
+                    <inputColumn
+                      refId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].Columns[Date]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Date"
+                      externalMetadataColumnId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].ExternalColumns[fecha]"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].Columns[CalendarDay]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CalendarDay"
+                      externalMetadataColumnId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].ExternalColumns[Dia]"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[CalendarDay]" />
+                    <inputColumn
+                      refId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].Columns[CalendarMonth]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CalendarMonth"
+                      externalMetadataColumnId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].ExternalColumns[Mes]"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[CalendarMonth]" />
+                    <inputColumn
+                      refId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].Columns[MonthLongName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MonthLongName"
+                      externalMetadataColumnId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].ExternalColumns[MesNombre]"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[MonthLongName]" />
+                    <inputColumn
+                      refId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].Columns[CalendarYear]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CalendarYear"
+                      externalMetadataColumnId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].ExternalColumns[Anio]"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[CalendarYear]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].ExternalColumns[Fechakey]"
+                      dataType="i4"
+                      name="Fechakey" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].ExternalColumns[fecha]"
+                      dataType="dbTimeStamp"
+                      name="fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].ExternalColumns[Dia]"
+                      dataType="i4"
+                      name="Dia" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].ExternalColumns[Mes]"
+                      dataType="i4"
+                      name="Mes" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].ExternalColumns[MesNombre]"
+                      dataType="wstr"
+                      length="50"
+                      name="MesNombre" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET].ExternalColumns[Anio]"
+                      dataType="i4"
+                      name="Anio" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar DimTiempo\Cargar dimdates csv.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DimTiempo\Cargar dimdates csv.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DimTiempo\Cargar dimdates csv.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DimTiempo\Cargar dimdates csv.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DimTiempo\Cargar dimdates csv.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar DimTiempo\leer fecha csv"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Origen de archivo plano;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de archivo plano"
+              localeId="3082"
+              name="leer fecha csv"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si las columnas de longitud cero se tratan como NULL."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre de una columna de salida que contiene el nombre de archivo. Si no se especifica ningún nombre, no se genera ninguna columna de salida con el nombre de archivo."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar DimTiempo\leer fecha csv.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Leer dimdates.csv]"
+                  connectionManagerRefId="Package.ConnectionManagers[Leer dimdates.csv]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano]"
+                  name="Salida de origen de archivo plano">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[Id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].ExternalColumns[Id]"
+                      length="50"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[Id]"
+                      name="Id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[Date]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].ExternalColumns[Date]"
+                      length="50"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[MonthLongName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].ExternalColumns[MonthLongName]"
+                      length="50"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[MonthLongName]"
+                      name="MonthLongName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[CalendarDay]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].ExternalColumns[CalendarDay]"
+                      length="50"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[CalendarDay]"
+                      name="CalendarDay"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[CalendarMonth]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].ExternalColumns[CalendarMonth]"
+                      length="50"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[CalendarMonth]"
+                      name="CalendarMonth"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[CalendarYear]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].ExternalColumns[CalendarYear]"
+                      length="50"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].Columns[CalendarYear]"
+                      name="CalendarYear"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].ExternalColumns[Id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].ExternalColumns[Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].ExternalColumns[MonthLongName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MonthLongName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].ExternalColumns[CalendarDay]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CalendarDay" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].ExternalColumns[CalendarMonth]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CalendarMonth" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano].ExternalColumns[CalendarYear]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CalendarYear" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de error de origen de archivo plano]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de archivo plano">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Columna de salida de error de origen de archivo plano"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      name="Columna de salida de error de origen de archivo plano" />
+                    <outputColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargar DimTiempo.Paths[Salida de origen de archivo plano]"
+              endId="Package\Cargar DimTiempo\Cargar dimdates csv.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de archivo plano"
+              startId="Package\Cargar DimTiempo\leer fecha csv.Outputs[Salida de origen de archivo plano]" />
+          </paths>
+        </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -886,21 +1366,71 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="195,42"
-          Id="Package\Cargar Excel a testCars"
-          TopLeft="77,48" />
-        <NodeLayout
           Size="172,42"
           Id="Package\Cargar DimTiempo"
           TopLeft="74.5,179.5" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Cargar Excel a testCars"
+          TopLeft="77,48" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Cargar Excel a testCars">
+    design-time-name="Package\Cargar DimTiempo">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Cargar DimTiempo\leer fecha csv"
+          TopLeft="94,60" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Cargar DimTiempo\Cargar dimdates csv"
+          TopLeft="133,200" />
+        <EdgeLayout
+          Id="Package\Cargar DimTiempo.Paths[Salida de origen de archivo plano]"
+          TopLeft="167.5,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55.5,98"
+              Start="0,0"
+              End="55.5,90.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45"
+                    Point2="0,49"
+                    Point3="4,49" />
+                  <mssgle:LineSegment
+                    End="51.5,49" />
+                  <mssgle:CubicBezierSegment
+                    Point1="51.5,49"
+                    Point2="55.5,49"
+                    Point3="55.5,53" />
+                  <mssgle:LineSegment
+                    End="55.5,90.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Cargar Excel a testCars">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="196,42"
           Id="Package\Cargar Excel a testCars\Origen de archivo plano"
@@ -928,7 +1458,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -936,6 +1468,14 @@
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\Cargar Excel a testCars\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar DimTiempo\Cargar dimdates csv">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
