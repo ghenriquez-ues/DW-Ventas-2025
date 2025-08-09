@@ -11,8 +11,8 @@
   DTS:LocaleID="3082"
   DTS:ObjectName="Prueba Leer csv"
   DTS:PackageType="5"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{24CE6117-9205-4D30-B192-818124ECD00B}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{A42133EB-32BA-4B1D-AE1B-F953C0D18961}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -166,6 +166,21 @@
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Cargar DimTiempo"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{F721C63F-097B-45FF-8389-83CA56E2E8FA}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargar DimTiempo"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1" />
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Cargar Excel a testCars"
       DTS:CreationName="Microsoft.Pipeline"
@@ -873,7 +888,11 @@
         <NodeLayout
           Size="195,42"
           Id="Package\Cargar Excel a testCars"
-          TopLeft="325,135" />
+          TopLeft="77,48" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Cargar DimTiempo"
+          TopLeft="74.5,179.5" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -885,37 +904,25 @@
         <NodeLayout
           Size="196,42"
           Id="Package\Cargar Excel a testCars\Origen de archivo plano"
-          TopLeft="248,105" />
+          TopLeft="61,43" />
         <NodeLayout
           Size="183,42"
           Id="Package\Cargar Excel a testCars\Destino de ADO NET"
-          TopLeft="536,280" />
+          TopLeft="62,152" />
         <EdgeLayout
           Id="Package\Cargar Excel a testCars.Paths[Salida de origen de archivo plano]"
-          TopLeft="346,147">
+          TopLeft="156.25,85">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="281.5,133"
+              EndConnector="0,67"
               Start="0,0"
-              End="281.5,125.5">
+              End="0,59.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,62.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,62.5"
-                    Point2="0,66.5"
-                    Point3="4,66.5" />
-                  <mssgle:LineSegment
-                    End="277.5,66.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="277.5,66.5"
-                    Point2="281.5,66.5"
-                    Point3="281.5,70.5" />
-                  <mssgle:LineSegment
-                    End="281.5,125.5" />
+                    End="0,59.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
